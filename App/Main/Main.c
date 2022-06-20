@@ -35,32 +35,27 @@
 // current page
 volatile u8 currentPage = 0;
 
-// current seconds
-volatile u8 currentSecond = 40;
-// current Mimutes
-volatile u8 currentMimutes = 58;
-// current hours
-volatile u8 currentHours = 23;
+// Current Context
+struct Context {
+	volatile u8 currentSecond;
+	volatile u8 currentMinute;
+	volatile u8 currentHour;
+	volatile u16 currentYear;
+	volatile u16 currentMonth;
+	volatile u16 currentDay;
+	volatile char currentTimeStr[10];
+	volatile char currentDateStr[20];
+};
 
-// current years
-volatile u16 currentYear = 2022;
-// current months 
-volatile u16 currentMonth = 6;
-// current day
-volatile u16 currentDay = 21;
-
-// currentTimeStr
-volatile char currentTimeStr[10] = {0};
-
-// currentDateStr
-volatile char currentDateStr[20] = {0};
+struct Context homePage = { 40, 58, 23, 2022, 6, 21, {0}, {0} };
 
 static  void  InitSoftware(void);   //初始化软件相关的模块
 static  void  InitHardware(void);   //初始化硬件相关的模块
 static  void  Proc2msTask(void);    //2ms处理任务
 static  void  Proc1SecTask(void);   //1s处理任务
-static 	void 	handleCurrentTimeStr(void);
-static 	void 	clockPerTick(u16 times);
+static 	void 	handleCurrentTimeStr(struct Context* t);
+static 	void  handleCurrentDateStr(struct Context* t);
+static 	void 	HomePageClockPerTick(u16 times);
 static 	void 	renderHomePage(void);
 static 	void  handleKeys(void);
 static 	void 	renderSettingsPage(void);
@@ -71,10 +66,10 @@ static 	void  ProcKeyDownKey3(void);
 static 	void 	ProcKeyUpKey1(void);
 static 	void 	ProcKeyUpKey2(void);
 static 	void 	ProcKeyUpKey3(void);
-static  void  InitSoftware(void)
-{
+static 	void 	handleSettingsValue(void);
 
-}
+
+static  void  InitSoftware(void){}
 
 static  void  InitHardware(void)
 {  
@@ -97,7 +92,7 @@ static  void  Proc2msTask(void)
 {  
   if(Get2msFlag())  //判断2ms标志状态
   { 
-		clockPerTick(0);		
+		HomePageClockPerTick(0);		
 		handleKeys();
 		OLEDRefreshGRAM();
     //LEDFlicker(250);//调用闪烁函数
@@ -130,16 +125,16 @@ static  void  Proc1SecTask(void)
   }    
 }
 
-static void handleCurrentTimeStr(void) {
+static void handleCurrentTimeStr(struct Context* t) {
 	// convert integer into string
-	sprintf(currentTimeStr, "%02d-%02d-%02d", currentHours, currentMimutes, currentSecond);
+	sprintf((*t).currentTimeStr, "%02d-%02d-%02d", (*t).currentHour, (*t).currentMinute, (*t).currentSecond);
 }
 
-static void handleCurrentDateStr(void) {
-	sprintf(currentDateStr, "%04d-%02d-%02d", currentYear, currentMonth, currentDay);
+static void handleCurrentDateStr(struct Context* t) {
+	sprintf((*t).currentDateStr, "%04d-%02d-%02d", (*t).currentYear, (*t).currentMonth, (*t).currentDay);
 }
 
-static void clockPerTick(u16 times) {
+static void HomePageClockPerTick(u16 times) {
 	static u16 totalCount = 0;
 	totalCount++;
 	if(totalCount <= times) {
@@ -148,38 +143,38 @@ static void clockPerTick(u16 times) {
 	
 	totalCount = 0;
 	
-	if(currentSecond < 59) {
-		currentSecond ++;
+	if(homePage.currentSecond < 59) {
+		homePage.currentSecond ++;
 	} else {
-		currentSecond = 0;
-		if(currentMimutes < 59) {
-			currentMimutes ++;
+		homePage.currentSecond = 0;
+		if(homePage.currentMinute < 59) {
+			homePage.currentMinute ++;
 		} else {
-			currentMimutes = 0;
-			if(currentHours < 23) {
-				currentHours ++;
+			homePage.currentMinute = 0;
+			if(homePage.currentHour < 23) {
+				homePage.currentHour ++;
 			} else {
-				currentSecond = currentMimutes = currentHours = 0;
-				if(currentDay < 30) {
-					currentDay ++;
+				homePage.currentHour = homePage.currentMinute = homePage.currentSecond= 0;
+				if(homePage.currentDay < 30) {
+					homePage.currentDay ++;
 				} else {
-					currentDay = 0;
-					if(currentMonth < 11) {
-						currentMonth ++;
+					homePage.currentDay = 0;
+					if(homePage.currentMonth < 11) {
+						homePage.currentMonth ++;
 					} else {
-						currentMonth = 0;
-						if (currentYear < 9999) {
-							currentYear ++;
+						homePage.currentMonth = 0;
+						if (homePage.currentYear < 9999) {
+							homePage.currentYear ++;
 						} else {
-							currentYear = currentMonth = currentDay = currentHours = currentMimutes = currentSecond = 0;
+							homePage.currentYear = homePage.currentMonth = homePage.currentDay = homePage.currentHour = homePage.currentMinute= homePage.currentSecond = 0;
 						}
 					}
 				}
 			}
 		}
 	}
-	handleCurrentTimeStr();
-	handleCurrentDateStr();
+	handleCurrentTimeStr(&homePage);
+	handleCurrentDateStr(&homePage);
 }
 
 
@@ -203,21 +198,20 @@ int main(void)
 }
 
 static void renderHomePage(void) {
-	OLEDShowStringBySize(24, 13, 16, (char *) currentDateStr);
-	OLEDShowStringBySize(32, 29, 16, (char *)currentTimeStr);
+	OLEDShowStringBySize(24, 13, 16, (char *) homePage.currentDateStr);
+	OLEDShowStringBySize(32, 29, 16, (char *) homePage.currentTimeStr);
 	OLEDShowStringBySize(40, 52, 12, "Settings>");
-	// TODO: long press go into settings mode.
 }
 
 static void renderSettingsPage(void) {
 	OLEDShowStringBySize(0, 0, 12, "< Setting Mode");
 	OLEDShowStringBySize(24, 18, 16, "2018-01-01");
-	OLEDShowStringBySize(32, 36, 16, (char *)currentTimeStr);
-	// TODO: long press return and save settings.
+	OLEDShowStringBySize(32, 36, 16, (char *) "00-22w2-321");
 }
 
 static void ProcKeyLongDownKey(u8 keyName) {
 	OLEDClear();
+	// TODO: set current value in settings mode to HomePage
 	currentPage = currentPage == 0 ? 1 : 0;
 }
 
