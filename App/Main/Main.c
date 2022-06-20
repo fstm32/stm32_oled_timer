@@ -99,7 +99,7 @@ static  void  Proc2msTask(void)
 {  
   if(Get2msFlag())  //ÅÐ¶Ï2ms±êÖ¾×´Ì¬
   { 
-		HomePageClockPerTick(5);		
+		HomePageClockPerTick(10);		
 		
 		handleKeys();
 		OLEDRefreshGRAM();
@@ -170,11 +170,11 @@ static void HomePageClockPerTick(u16 times) {
 				if(homePage.currentDay < 30) {
 					homePage.currentDay ++;
 				} else {
-					homePage.currentDay = 0;
+					homePage.currentDay = 1;
 					if(homePage.currentMonth < 11) {
 						homePage.currentMonth ++;
 					} else {
-						homePage.currentMonth = 0;
+						homePage.currentMonth = 1;
 						if (homePage.currentYear < 9999) {
 							homePage.currentYear ++;
 						} else {
@@ -301,7 +301,7 @@ static void settingsPlushOneDay(struct Context* t) {
 		(*t).currentDay++;
 		return;
 	}
-	(*t).currentDay = 0;
+	(*t).currentDay = 1;
 };
 
 static void settingsMinusOneDay(struct Context* t) {
@@ -317,7 +317,7 @@ static void settingsPlushOneMonth(struct Context* t) {
 		(*t).currentMonth++;
 		return;
 	}
-	(*t).currentMonth = 0;
+	(*t).currentMonth = 1;
 };
 
 static void settingsMinusOneMonth(struct Context* t) {
