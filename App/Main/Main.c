@@ -29,6 +29,8 @@
 #include "OLED.h"
 #include "string.h"
 #include "stdlib.h"
+#include "KeyOne.h"
+#include "ProcKeyOne.h"
 
 // current seconds
 volatile u8 currentSecond = 40;
@@ -57,6 +59,7 @@ static  void  Proc1SecTask(void);   //1s处理任务
 static 	void 	handleCurrentTimeStr(void);
 static 	void 	clockPerTick(u16 times);
 static 	void 	renderHomePage(void);
+static 	void  handleKeys(void);
 static 	void 	renderSettingsPage(void);
 static  void  InitSoftware(void)
 {
@@ -72,6 +75,8 @@ static  void  InitHardware(void)
   InitTimer();        //初始化Timer模块
   InitLED();          //初始化LED模块
   InitSysTick();      //初始化SysTick模块
+	InitKeyOne();
+	InitProcKeyOne();
   InitOLED();         //初始化OLED模块
 }
 
@@ -83,11 +88,24 @@ static  void  Proc2msTask(void)
   if(Get2msFlag())  //判断2ms标志状态
   { 
 		clockPerTick(0);		
-		
+		handleKeys();
 		OLEDRefreshGRAM();
     //LEDFlicker(250);//调用闪烁函数
     Clr2msFlag();   //清除2ms标志
   }
+}
+
+static void handleKeys(void) {
+	static u8 t = 0;
+	if(t < 1) {
+		t++;
+		return;
+	}
+	
+	t = 0;
+	ScanKeyOne(KEY_NAME_KEY1, ProcKeyUpKey1, ProcKeyDownKey1, ProcKeyLongDownKey);
+	ScanKeyOne(KEY_NAME_KEY2, ProcKeyUpKey2, ProcKeyDownKey2, ProcKeyLongDownKey);
+	ScanKeyOne(KEY_NAME_KEY3, ProcKeyUpKey3, ProcKeyDownKey3, ProcKeyLongDownKey);
 }
 
 /*

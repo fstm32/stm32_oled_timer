@@ -2,6 +2,8 @@
 ".\objects\main.o"
 ".\objects\led.o"
 ".\objects\oled.o"
+".\objects\keyone.o"
+".\objects\prockeyone.o"
 ".\objects\rcc.o"
 ".\objects\timer.o"
 ".\objects\queue.o"

@@ -341,7 +341,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\App\Main;..\App\DataType;..\HW\RCC;..\HW\Timer;..\HW\UART1;..\FW\inc;..\ARM\NVIC;..\ARM\SysTick;..\ARM\System;..\App\LED;..\App\OLED</IncludePath>
+              <IncludePath>..\App\Main;..\App\DataType;..\HW\RCC;..\HW\Timer;..\HW\UART1;..\FW\inc;..\ARM\NVIC;..\ARM\SysTick;..\ARM\System;..\App\LED;..\App\OLED;..\App\KeyOne</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -399,6 +399,16 @@
               <FileName>OLED.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\App\OLED\OLED.c</FilePath>
+            </File>
+            <File>
+              <FileName>KeyOne.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\App\KeyOne\KeyOne.c</FilePath>
+            </File>
+            <File>
+              <FileName>ProcKeyOne.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\App\KeyOne\ProcKeyOne.c</FilePath>
             </File>
           </Files>
         </Group>
