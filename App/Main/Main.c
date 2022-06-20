@@ -31,24 +31,24 @@
 #include "stdlib.h"
 
 // current seconds
-u8 currentSecond = 40;
+volatile u8 currentSecond = 40;
 // current Mimutes
-u8 currentMimutes = 58;
+volatile u8 currentMimutes = 58;
 // current hours
-u8 currentHours = 23;
+volatile u8 currentHours = 23;
 
 // current years
-u16 currentYear = 2022;
+volatile u16 currentYear = 2022;
 // current months 
-u16 currentMonth = 6;
+volatile u16 currentMonth = 6;
 // current day
-u16 currentDay = 21;
+volatile u16 currentDay = 21;
 
 // currentTimeStr
-char currentTimeStr[10] = {0};
+volatile char currentTimeStr[10] = {0};
 
 // currentDateStr
-char currentDateStr[20] = {0};
+volatile char currentDateStr[20] = {0};
 
 static  void  InitSoftware(void);   //初始化软件相关的模块
 static  void  InitHardware(void);   //初始化硬件相关的模块
