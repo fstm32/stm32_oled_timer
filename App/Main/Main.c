@@ -32,6 +32,9 @@
 #include "KeyOne.h"
 #include "ProcKeyOne.h"
 
+// current page
+volatile u8 currentPage = 0;
+
 // current seconds
 volatile u8 currentSecond = 40;
 // current Mimutes
@@ -61,6 +64,13 @@ static 	void 	clockPerTick(u16 times);
 static 	void 	renderHomePage(void);
 static 	void  handleKeys(void);
 static 	void 	renderSettingsPage(void);
+static 	void  ProcKeyLongDownKey(u8 keyName);
+static 	void  ProcKeyDownKey1(void);
+static 	void  ProcKeyDownKey2(void);
+static 	void  ProcKeyDownKey3(void);
+static 	void 	ProcKeyUpKey1(void);
+static 	void 	ProcKeyUpKey2(void);
+static 	void 	ProcKeyUpKey3(void);
 static  void  InitSoftware(void)
 {
 
@@ -182,8 +192,11 @@ int main(void)
   
   while(1)
   {
-		renderHomePage();
-		//renderSettingsPage();
+		switch(currentPage) {
+			case 0: renderHomePage(); break;
+			case 1: renderSettingsPage(); break;
+		}
+		
     Proc2msTask();  //2ms处理任务
     Proc1SecTask(); //1s处理任务   
   }
@@ -201,4 +214,28 @@ static void renderSettingsPage(void) {
 	OLEDShowStringBySize(24, 18, 16, "2018-01-01");
 	OLEDShowStringBySize(32, 36, 16, (char *)currentTimeStr);
 	// TODO: long press return and save settings.
+}
+
+static void ProcKeyLongDownKey(u8 keyName) {
+	OLEDClear();
+	currentPage = currentPage == 0 ? 1 : 0;
+}
+
+static void ProcKeyUpKey1(void) {
+
+}
+static void ProcKeyUpKey2(void) {
+
+}
+static void ProcKeyUpKey3(void) {
+
+}
+static void ProcKeyDownKey1(void) {
+
+}
+static void ProcKeyDownKey2(void) {
+
+}
+static void ProcKeyDownKey3(void) {
+
 }
