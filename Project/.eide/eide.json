@@ -1,0 +1,435 @@
+{
+  "name": "Project",
+  "type": "ARM",
+  "mode": "Target 1",
+  "toolchain": "AC5",
+  "dependenceList": [
+    {
+      "groupName": "custom",
+      "depList": [
+        {
+          "name": "default",
+          "sourceDirList": [],
+          "libList": [],
+          "incList": [
+            "./../App/Main",
+            "./../App/DataType",
+            "./../HW/RCC",
+            "./../HW/Timer",
+            "./../HW/UART1",
+            "./../FW/inc",
+            "./../ARM/NVIC",
+            "./../ARM/SysTick",
+            "./../ARM/System",
+            "./../App/LED",
+            "./../App/OLED",
+            "./.cmsis/dsp_lib",
+            "./.cmsis/include",
+            "./RTE/_Target 1",
+            "./.eide/deps"
+          ],
+          "defineList": [
+            "STM32F10X_HD",
+            "USE_STDPERIPH_DRIVER"
+          ]
+        }
+      ]
+    }
+  ],
+  "compileConfig": {
+    "cpuType": "Cortex-M3",
+    "floatingPointHardware": "none",
+    "useCustomScatterFile": false,
+    "scatterFilePath": "undefined",
+    "storageLayout": {
+      "RAM": [
+        {
+          "tag": "RAM",
+          "id": 1,
+          "mem": {
+            "startAddr": "0x0",
+            "size": "0x0"
+          },
+          "isChecked": false,
+          "noInit": false
+        },
+        {
+          "tag": "RAM",
+          "id": 2,
+          "mem": {
+            "startAddr": "0x0",
+            "size": "0x0"
+          },
+          "isChecked": false,
+          "noInit": false
+        },
+        {
+          "tag": "RAM",
+          "id": 3,
+          "mem": {
+            "startAddr": "0x0",
+            "size": "0x0"
+          },
+          "isChecked": false,
+          "noInit": false
+        },
+        {
+          "tag": "IRAM",
+          "id": 1,
+          "mem": {
+            "startAddr": "0x20000000",
+            "size": "0xc000"
+          },
+          "isChecked": true,
+          "noInit": false
+        },
+        {
+          "tag": "IRAM",
+          "id": 2,
+          "mem": {
+            "startAddr": "0x0",
+            "size": "0x0"
+          },
+          "isChecked": false,
+          "noInit": false
+        }
+      ],
+      "ROM": [
+        {
+          "tag": "ROM",
+          "id": 1,
+          "mem": {
+            "startAddr": "0x0",
+            "size": "0x0"
+          },
+          "isChecked": false,
+          "isStartup": false
+        },
+        {
+          "tag": "ROM",
+          "id": 2,
+          "mem": {
+            "startAddr": "0x0",
+            "size": "0x0"
+          },
+          "isChecked": false,
+          "isStartup": false
+        },
+        {
+          "tag": "ROM",
+          "id": 3,
+          "mem": {
+            "startAddr": "0x0",
+            "size": "0x0"
+          },
+          "isChecked": false,
+          "isStartup": false
+        },
+        {
+          "tag": "IROM",
+          "id": 1,
+          "mem": {
+            "startAddr": "0x8000000",
+            "size": "0x40000"
+          },
+          "isChecked": true,
+          "isStartup": true
+        },
+        {
+          "tag": "IROM",
+          "id": 2,
+          "mem": {
+            "startAddr": "0x0",
+            "size": "0x0"
+          },
+          "isChecked": false,
+          "isStartup": false
+        }
+      ]
+    },
+    "options": "null"
+  },
+  "uploader": "JLink",
+  "srcDirs": [
+    "./.eide/deps"
+  ],
+  "virtualFolder": {
+    "name": "<virtual_root>",
+    "files": [],
+    "folders": [
+      {
+        "name": "App",
+        "files": [
+          {
+            "path": "../App/Main/Main.c"
+          },
+          {
+            "path": "../App/LED/LED.c"
+          },
+          {
+            "path": "../App/OLED/OLED.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "Alg",
+        "files": [],
+        "folders": []
+      },
+      {
+        "name": "HW",
+        "files": [
+          {
+            "path": "../HW/RCC/RCC.c"
+          },
+          {
+            "path": "../HW/Timer/Timer.c"
+          },
+          {
+            "path": "../HW/UART1/Queue.c"
+          },
+          {
+            "path": "../HW/UART1/UART1.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "OS",
+        "files": [],
+        "folders": []
+      },
+      {
+        "name": "TPSW",
+        "files": [],
+        "folders": []
+      },
+      {
+        "name": "FW",
+        "files": [
+          {
+            "path": "../FW/src/misc.c"
+          },
+          {
+            "path": "../FW/src/stm32f10x_flash.c"
+          },
+          {
+            "path": "../FW/src/stm32f10x_gpio.c"
+          },
+          {
+            "path": "../FW/src/stm32f10x_rcc.c"
+          },
+          {
+            "path": "../FW/src/stm32f10x_tim.c"
+          },
+          {
+            "path": "../FW/src/stm32f10x_usart.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "ARM",
+        "files": [
+          {
+            "path": "../ARM/NVIC/NVIC.c"
+          },
+          {
+            "path": "../ARM/SysTick/SysTick.c"
+          },
+          {
+            "path": "../ARM/System/core_cm3.c"
+          },
+          {
+            "path": "../ARM/System/stm32f10x_it.c"
+          },
+          {
+            "path": "../ARM/System/system_stm32f10x.c"
+          },
+          {
+            "path": "../ARM/System/startup_stm32f10x_hd.s"
+          }
+        ],
+        "folders": []
+      }
+    ]
+  },
+  "excludeList": [],
+  "outDir": "build",
+  "deviceName": null,
+  "packDir": null,
+  "uploadConfig": {
+    "bin": "",
+    "baseAddr": "0x08000000",
+    "cpuInfo": {
+      "vendor": "ST",
+      "cpuName": "STM32F103C8"
+    },
+    "proType": 1,
+    "speed": 8000,
+    "otherCmds": ""
+  },
+  "uploadConfigMap": {},
+  "miscInfo": {
+    "uid": "0a507b6cfb7d6d75fb568972e5811ae2"
+  },
+  "targets": {
+    "Target 1": {
+      "compileConfig": {
+        "cpuType": "Cortex-M3",
+        "floatingPointHardware": "none",
+        "useCustomScatterFile": false,
+        "scatterFilePath": "undefined",
+        "storageLayout": {
+          "RAM": [
+            {
+              "tag": "RAM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "RAM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "RAM",
+              "id": 3,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            },
+            {
+              "tag": "IRAM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x20000000",
+                "size": "0xc000"
+              },
+              "isChecked": true,
+              "noInit": false
+            },
+            {
+              "tag": "IRAM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "noInit": false
+            }
+          ],
+          "ROM": [
+            {
+              "tag": "ROM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "ROM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "ROM",
+              "id": 3,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            },
+            {
+              "tag": "IROM",
+              "id": 1,
+              "mem": {
+                "startAddr": "0x8000000",
+                "size": "0x40000"
+              },
+              "isChecked": true,
+              "isStartup": true
+            },
+            {
+              "tag": "IROM",
+              "id": 2,
+              "mem": {
+                "startAddr": "0x0",
+                "size": "0x0"
+              },
+              "isChecked": false,
+              "isStartup": false
+            }
+          ]
+        },
+        "options": "null"
+      },
+      "uploader": "JLink",
+      "uploadConfig": {
+        "bin": "",
+        "baseAddr": "0x08000000",
+        "cpuInfo": {
+          "vendor": "ST",
+          "cpuName": "STM32F103C8"
+        },
+        "proType": 1,
+        "speed": 8000,
+        "otherCmds": ""
+      },
+      "uploadConfigMap": {},
+      "toolchain": "AC5",
+      "custom_dep": {
+        "name": "default",
+        "sourceDirList": [],
+        "libList": [],
+        "incList": [
+          "../App/Main",
+          "../App/DataType",
+          "../HW/RCC",
+          "../HW/Timer",
+          "../HW/UART1",
+          "../FW/inc",
+          "../ARM/NVIC",
+          "../ARM/SysTick",
+          "../ARM/System",
+          "../App/LED",
+          "../App/OLED",
+          ".cmsis/dsp_lib",
+          ".cmsis/include",
+          "RTE/_Target 1"
+        ],
+        "defineList": [
+          "STM32F10X_HD",
+          "USE_STDPERIPH_DRIVER"
+        ]
+      },
+      "excludeList": []
+    }
+  },
+  "version": "3.1"
+}

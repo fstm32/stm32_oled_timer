@@ -1,0 +1,76 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.37.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: famouscat famouscat, mosajdisa, LIC=585FJ-UMXTC-63LMB-2X4QV-3TT5A-AB3DW
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.37.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.37.0.0
+Dialog DLL:      DCM.DLL V1.17.5.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
+Dialog DLL:      TCM.DLL V1.56.1.0
+ 
+<h2>Project:</h2>
+C:\Users\famouscat\Desktop\projects\stm32f103\04.例程资料\Product.V2.0\10.OLED显示实验\Project\STM32KeilPrj.uvprojx
+Project File Date:  06/20/2022
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'Target 1'
+compiling Queue.c...
+compiling RCC.c...
+compiling Timer.c...
+compiling LED.c...
+compiling misc.c...
+compiling UART1.c...
+compiling Main.c...
+..\App\Main\Main.c(175): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const u8 *"
+  	OLEDShowStringBySize(24, 13, 16, (char *) currentDateStr);
+..\App\Main\Main.c(176): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const u8 *"
+  	OLEDShowStringBySize(32, 29, 16, (char *)currentTimeStr);
+..\App\Main\Main.c(184): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "const u8 *"
+  	OLEDShowStringBySize(32, 36, 16, (char *)currentTimeStr);
+..\App\Main\Main.c(181): warning:  #177-D: function "renderSettingsPage"  was declared but never referenced
+  static void renderSettingsPage(void) {
+..\App\Main\Main.c: 4 warnings, 0 errors
+compiling OLED.c...
+compiling SysTick.c...
+compiling NVIC.c...
+compiling stm32f10x_usart.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_flash.c...
+assembling startup_stm32f10x_hd.s...
+compiling stm32f10x_tim.c...
+compiling stm32f10x_it.c...
+compiling system_stm32f10x.c...
+linking...
+Program Size: Code=5780 RO-data=2996 RW-data=68 ZI-data=2308  
+FromELF: creating hex file...
+".\Objects\main.axf" - 0 Error(s), 4 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.4.0.pack
+                Keil.STM32F1xx_DFP.2.4.0
+                STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  C:/Users/famouscat/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.0/Device/Include
+
+<h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:03
+</pre>
+</body>
+</html>
